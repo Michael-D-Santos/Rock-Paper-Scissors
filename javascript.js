@@ -1,11 +1,5 @@
 function computerPlay() {
-  let x = ["Rock","Paper","Scissors"];
-  return console.log(x[Math.floor(Math.random()*x.length)]);
+  let x = ["rock", "paper", "scissors"];
+  let returnChoice = x[Math.floor(Math.random()*x.length)];
+  console.log(returnChoice);
 }
-
-function playRound(playerSelection, computerSelection) {
-  
-}
-
-let playerSelection = prompt("Choose rock, paper, or scissors:");
-let computerSelection = computerPlay();
