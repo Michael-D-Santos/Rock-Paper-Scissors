@@ -1,8 +1,12 @@
+//Let computer choose either between rock, paper, or scissors, and return the output as a string.
+
 function computerPlay() {
   let x = ["rock", "paper", "scissors"];
   let returnChoice = x[Math.floor(Math.random()*x.length)];
   return String(returnChoice);
 }
+
+// Function that plays a game of rock-paper-scissors.
 
 function playRound(playerSelection = playerSelect, computerSelection = computerSelect) {
   
@@ -30,6 +34,8 @@ function playRound(playerSelection = playerSelect, computerSelection = computerS
 
 }
 
+// This function plays a five-round game of rock-paper-scissors that keeps count and returns a winner at the end.
+
 function game() {
   let winCount = 0;
   let lossCount = 0;
@@ -37,12 +43,23 @@ function game() {
   for (let i = 0; i < 5; i++) {
     let userSelect = prompt("Enter rock, paper, or scissors").toLowerCase();
     let robotSelect = computerPlay();
-    if (playRound(userSelect, robotSelect) == "You win!") {
+    let output = playRound(userSelect, robotSelect);
+    if (output == "You win!") {
       ++winCount;
-      console.log(`You have won ${winCount} times!`);
-    } else {
+      if (winCount == 1) {
+        console.log(`You have won ${winCount} time!`);
+      } else {
+        console.log(`You have won ${winCount} times!`);
+      }
+    } else if (output == "You lose!") {
       ++lossCount;
-      console.log(`You have lost ${lossCount} times!`);
+      if (lossCount == 1) {
+        console.log(`You have lost ${lossCount} time!`);
+      } else {
+        console.log(`You have lost ${lossCount} times!`);
+      }
+    } else {
+      console.log("Tie!");
     }
   }
   if (winCount > lossCount) {
@@ -53,6 +70,8 @@ function game() {
     console.log(`A TIE HAS BEEN MADE! ${winCount} is the same as ${lossCount}! Try again if you're not satisfied with a draw, and have fun!`);
   }
 }
+
+//Asks for input from the user, and plays a round of RPS with the user input and computer input.
 
 let playerSelect = prompt("Enter rock, paper, or scissors").toLowerCase();
 let computerSelect = computerPlay();
