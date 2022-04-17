@@ -1,3 +1,3 @@
-# Odin-RPS
+# Rock-Paper-Scissors
 
-A rock-paper-scissors project for The Odin Project's *Foundations* curriculum.
+A rock-paper-scissors project made with HTML & JavaScript.
