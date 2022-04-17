@@ -58,12 +58,16 @@ function counterCheck(string){
 
   if (winCount == 5 && winCount > lossCount) {
     result.textContent = "YOU WIN!";
+    body.removeChild(buttons);
   } else if (winCount == 5 && winCount < lossCount) {
     result.textContent = "THE COMPUTER WINS!";
+    body.removeChild(buttons);
   } else if (lossCount == 5 && winCount > lossCount) {
     result.textContent = "YOU WIN!";
+    body.removeChild(buttons);
   } else if (lossCount == 5 && winCount < lossCount) {
     result.textContent = "THE COMPUTER WINS!";
+    body.removeChild(buttons);
   }
 }
 
@@ -77,6 +81,8 @@ const lossCounter = document.querySelector(".lossCounter");
 const result = document.querySelector(".result");
 const userChoice = document.querySelector(".userChoice");
 const computerChoice = document.querySelector(".computerChoice");
+const buttons = document.querySelector(".button");
+const body = document.querySelector(".body");
 
 //Initializes two variables for counting winners and losers
 
