@@ -1,3 +1,3 @@
 # Rock-Paper-Scissors
 
-A rock-paper-scissors project made with HTML & JavaScript.
+A Rock-Paper-Scissors project made with HTML & JavaScript.
