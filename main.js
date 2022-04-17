@@ -1,4 +1,5 @@
-//Let computer choose either between rock, paper, or scissors, and return the output as a string.
+//Let computer choose either between rock, paper, or scissors, and return the 
+//output as a string.
 
 function computerPlay() {
   let x = ["rock", "paper", "scissors"];
@@ -6,9 +7,10 @@ function computerPlay() {
   return String(returnChoice);
 }
 
-// Function that plays a game of rock-paper-scissors.
+//Function that plays a game of rock-paper-scissors.
 
-function playRound(playerSelection = playerSelect, computerSelection = computerSelect) {
+function playRound(playerSelection = playerSelect,
+  computerSelection = computerSelect) {
   
   console.log("You chose: " + playerSelection);
   console.log("The computer chose: " + computerSelection);
@@ -29,50 +31,66 @@ function playRound(playerSelection = playerSelect, computerSelection = computerS
     return("You win!");
   } else {
     location.reload();
-    return("You must not have given a valid input; refresh the page and try again!");
+    return(
+      "You must not have given a valid input; refresh the page and try again!");
   }
 
 }
 
-// This function plays a five-round game of rock-paper-scissors that keeps count and returns a winner at the end.
+//Function that plays a game of RPS with whatever input the user chose, then
+//adds to either the win or lose counter, or adds to neither if there is a tie.
 
-function game() {
-  let winCount = 0;
-  let lossCount = 0;
+function counterCheck(string){
+  let computerInput = computerPlay();
+  let output = playRound(string, computerInput);
+  userChoice.textContent = string.toUpperCase();
+  computerChoice.textContent = computerInput.toUpperCase();
 
-  for (let i = 0; i < 5; i++) {
-    let userSelect = prompt("Enter rock, paper, or scissors").toLowerCase();
-    let robotSelect = computerPlay();
-    let output = playRound(userSelect, robotSelect);
-    if (output == "You win!") {
-      ++winCount;
-      if (winCount == 1) {
-        console.log(`You have won ${winCount} time!`);
-      } else {
-        console.log(`You have won ${winCount} times!`);
-      }
-    } else if (output == "You lose!") {
-      ++lossCount;
-      if (lossCount == 1) {
-        console.log(`You have lost ${lossCount} time!`);
-      } else {
-        console.log(`You have lost ${lossCount} times!`);
-      }
-    } else {
-      console.log("Tie!");
-    }
-  }
-  if (winCount > lossCount) {
-    console.log(`YOU WON! ${winCount} is greater than ${lossCount}! Congratulations on beating the computer at rock paper scissors!`);
-  } else if (winCount < lossCount) {
-    console.log(`YOU LOST! ${lossCount} is greater than ${winCount}! Try again next time, and maybe you'll win if luck is on your side!`);
+  if (output == "You win!") {
+    winCount++;
+    winCounter.textContent = winCount;
+  } else if (output == "Tie!") {
+    null;
   } else {
-    console.log(`A TIE HAS BEEN MADE! ${winCount} is the same as ${lossCount}! Try again if you're not satisfied with a draw, and have fun!`);
+    lossCount++;
+    lossCounter.textContent = lossCount;
+  }
+
+  if (winCount == 5 && winCount > lossCount) {
+    result.textContent = "YOU WIN!";
+  } else if (winCount == 5 && winCount < lossCount) {
+    result.textContent = "THE COMPUTER WINS!";
+  } else if (lossCount == 5 && winCount > lossCount) {
+    result.textContent = "YOU WIN!";
+  } else if (lossCount == 5 && winCount < lossCount) {
+    result.textContent = "THE COMPUTER WINS!";
   }
 }
 
-//Asks for input from the user, and plays a round of RPS with the user input and computer input.
+//Declares variables corresponding to HTML classes
 
-let playerSelect = prompt("Enter rock, paper, or scissors").toLowerCase();
-let computerSelect = computerPlay();
-console.log(playRound(playerSelect, computerSelect));
+const buttonRock = document.querySelector(".rock");
+const buttonPaper = document.querySelector(".paper");
+const buttonScissors = document.querySelector(".scissors");
+const winCounter = document.querySelector(".winCounter");
+const lossCounter = document.querySelector(".lossCounter");
+const result = document.querySelector(".result");
+const userChoice = document.querySelector(".userChoice");
+const computerChoice = document.querySelector(".computerChoice");
+
+//Initializes two variables for counting winners and losers
+
+let winCount = 0;
+let lossCount = 0;
+
+//If a player presses a button, play a game of RPS with that button's input.
+
+buttonRock.addEventListener("click", () => {
+  counterCheck("rock");
+});
+buttonPaper.addEventListener("click", () => {
+  counterCheck("paper");
+});
+buttonScissors.addEventListener("click", () => {
+  counterCheck("scissors");
+});
